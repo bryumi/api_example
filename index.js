@@ -23,9 +23,7 @@ let users = [
     }
 ]
 
-app.route('/api').get((req, res) => res.json({
-    users
-  }))
+app.route('/api').get((req, res) => res.json({users}))
   
 app.route('/api/:id').get((request, response) => {
     const userId = request.params.id;
@@ -53,7 +51,7 @@ app.route('/api').post((request, response) => {
 })
 
 app.route('/api/:id').put((request, response) =>{
-    const { userId } = request.params;
+    const userId  = request.params.id;
 
     const user = users.find(user => Number(user.id) === Number(userId));
     
@@ -78,7 +76,7 @@ app.route('/api/:id').put((request, response) =>{
 });
 
 app.route('api/:id').delete((request, response) => {
-    const { userId } = request.params;
+    const userId = request.params.id;
     users.filter = (user => Number(user.id) !== Number(userId));
 
     response.json('Deleted User!')
